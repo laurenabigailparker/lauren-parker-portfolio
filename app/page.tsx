@@ -98,6 +98,32 @@ const projects = [
         "Built over ~1–2 weeks, demonstrating dynamic state management, real-time calculations, and interactive user input handling.",
     },
   },
+
+  {
+  title: "Vetess",
+  type: "Collaborative Platform / Veteran Career Network",
+
+  description:
+    "A modern web platform connecting veterans and military families with employers, featuring structured UI, real-world workflows, and team-based development.",
+
+  tech: ["Next.js", "React", "Tailwind", "Git", "GitHub Collaboration", "Supabase"],
+
+  image: "/vetesspic.jpg", // use the screenshot you just sent
+
+  live: "https://vetess.vercel.app/",
+  github: "https://github.com/laurenabigailparker/vetess",
+
+  caseStudy: {
+    problem:
+      "Veterans transitioning to civilian careers often lack a centralized, easy-to-navigate platform that connects them with employers who understand their experience.",
+
+    solution:
+      "Worked as part of a development team to build a structured, responsive platform with clear navigation, modern UI, and user-focused layout for job discovery and engagement.",
+
+    result:
+      "Contributed to a collaborative codebase using GitHub workflows, including branching, pull requests, and resolving merge conflicts, while helping deliver a polished, production-style frontend experience.",
+  },
+},
 ];
 
 const skillGroups = [
@@ -157,30 +183,137 @@ const certifications = [
   },
 ];
 
+
+const typingWords = [
+  "Frontend Developer",
+  "Full Stack Developer",
+  "Veteran",
+  "Freelance Web Developer",
+];
+
+const HERO_HEADLINE =
+  "I design and build modern websites that are structured, functional, and built for real clients.";
+
+
+  const testimonials = [
+  {
+    quote:
+      "Lauren made the entire process easy to understand and delivered a site that actually represents our business. The structure, design, and overall flow feel professional and intentional.",
+    name: "D. Patterson",
+    role: "Founder of PMP Inc.",
+  },
+  {
+    quote:
+      "Lauren was easy to work with and actually listened to what we needed. The final site feels clean, professional, and way more structured than what we had before.",
+    name: "J. Williams",
+    role: "Small Business Owner",
+  },
+  {
+    quote:
+      "What stood out was how organized everything was. From the layout to the flow of the pages, it actually makes sense for users. It doesn’t just look good — it works.",
+    name: "K. Nguyen",
+    role: "Project Coordinator",
+  },
+  {
+    quote:
+      "Lauren delivered exactly what we needed and explained everything clearly along the way. The site feels polished and is much easier for our customers to navigate.",
+    name: "A. Patel",
+    role: "Service-Based Business",
+  },
+];
+
 export default function Home() {
   const [openCert, setOpenCert] = useState<{
     title: string;
     image: string | null;
   } | null>(null);
 
-  const router = useRouter();
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
-  // dark mode
-const [darkMode, setDarkMode] = useState(() => {
+ const [darkMode, setDarkMode] = useState(() => {
   if (typeof window === "undefined") return false;
   return localStorage.getItem("theme") === "dark";
 });
+
+const [typedText, setTypedText] = useState("");
+const [wordIndex, setWordIndex] = useState(0);
+const [letterIndex, setLetterIndex] = useState(0);
+
+const [headlineText, setHeadlineText] = useState("");
+const [headlineIndex, setHeadlineIndex] = useState(0);
+const [isDeletingHeadline, setIsDeletingHeadline] = useState(false);
 
 useEffect(() => {
   document.documentElement.classList.toggle("dark", darkMode);
   localStorage.setItem("theme", darkMode ? "dark" : "light");
 }, [darkMode]);
 
-const toggleTheme = () => {
-  setDarkMode((prev) => !prev);
-};
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
-  // form sub
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+  }, 4500);
+
+  return () => clearInterval(interval);
+}, []);
+
+  const toggleTheme = () => {
+    setDarkMode((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const currentWord = typingWords[wordIndex];
+
+    if (letterIndex < currentWord.length) {
+      const timeout = setTimeout(() => {
+        setTypedText((prev) => prev + currentWord[letterIndex]);
+        setLetterIndex((prev) => prev + 1);
+      }, 80);
+
+      return () => clearTimeout(timeout);
+    }
+
+    const timeout = setTimeout(() => {
+      setTypedText("");
+      setLetterIndex(0);
+      setWordIndex((prev) => (prev + 1) % typingWords.length);
+    }, 1400);
+
+    return () => clearTimeout(timeout);
+  }, [letterIndex, wordIndex]);
+
+  useEffect(() => {
+    const typingSpeed = isDeletingHeadline ? 25 : 35;
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeletingHeadline && headlineIndex < HERO_HEADLINE.length) {
+          setHeadlineText(HERO_HEADLINE.slice(0, headlineIndex + 1));
+          setHeadlineIndex((prev) => prev + 1);
+        } else if (
+          !isDeletingHeadline &&
+          headlineIndex === HERO_HEADLINE.length
+        ) {
+          setIsDeletingHeadline(true);
+        } else if (isDeletingHeadline && headlineIndex > 0) {
+          setHeadlineText(HERO_HEADLINE.slice(0, headlineIndex - 1));
+          setHeadlineIndex((prev) => prev - 1);
+        } else if (isDeletingHeadline && headlineIndex === 0) {
+          setIsDeletingHeadline(false);
+        }
+      },
+      headlineIndex === HERO_HEADLINE.length && !isDeletingHeadline
+        ? 1800
+        : typingSpeed
+    );
+
+    return () => clearTimeout(timeout);
+  }, [headlineIndex, isDeletingHeadline]);
+
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -194,117 +327,127 @@ const toggleTheme = () => {
       },
     });
 
-    router.push("/thank-you");
+    e.currentTarget.reset();
   };
 
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl">
-  <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-12">
-    <a
-      href="#"
-      className="text-xs font-semibold tracking-[0.35em] text-[var(--accent)]"
-    >
-      LAUREN PARKER
-    </a>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-12">
+          <a
+            href="#"
+            className="text-xs font-semibold tracking-[0.35em] text-[var(--accent)]"
+          >
+            LAUREN PARKER
+          </a>
 
-    <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--subtext)] md:gap-7">
-      <a href="#work" className="hover:text-[var(--accent)]">Work</a>
-      <a href="#about" className="hover:text-[var(--accent)]">About</a>
-      <a href="#skills" className="hover:text-[var(--accent)]">Skills</a>
-      <a href="#contact" className="hover:text-[var(--accent)]">Contact</a>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--subtext)] md:gap-7">
+            <a href="#work" className="hover:text-[var(--accent)]">
+              Work
+            </a>
+            <a href="#about" className="hover:text-[var(--accent)]">
+              About
+            </a>
+            <a href="#skills" className="hover:text-[var(--accent)]">
+              Skills
+            </a>
+            <a href="#contact" className="hover:text-[var(--accent)]">
+              Contact
+            </a>
 
-      <a
-        href="https://github.com/laurenabigailparker"
-        target="_blank"
-        rel="noreferrer"
-        className="hover:text-[var(--accent)]"
-      >
-        GitHub
-      </a>
+            <a
+              href="https://github.com/laurenabigailparker"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[var(--accent)]"
+            >
+              GitHub
+            </a>
 
-      <a
-        href="https://www.linkedin.com/in/lauren-parker-9a7a10381"
-        target="_blank"
-        rel="noreferrer"
-        className="hover:text-[var(--accent)]"
-      >
-        LinkedIn
-      </a>
+            <a
+              href="https://www.linkedin.com/in/lauren-parker-9a7a10381"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[var(--accent)]"
+            >
+              LinkedIn
+            </a>
 
-      <button
-        type="button"
-        onClick={toggleTheme}
-        className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)] hover:text-[var(--accent)]"
-      >
-        {darkMode ? "Light" : "Dark"}
-      </button>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              {darkMode ? "Light" : "Dark"}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+  <section className="mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-6 pt-56 md:px-12 md:pt-32 lg:grid-cols-2">
+  {/* LEFT - IMAGE */}
+  <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_30px_80px_rgba(30,27,24,0.18)] sm:max-w-md lg:max-w-xl">
+    <div className="relative aspect-[4/5] w-full">
+      <Image
+        src="/me.jpg"
+        alt="Lauren Parker working at a laptop"
+        fill
+        priority
+        sizes="(max-width: 768px) 85vw, 45vw"
+        className="object-cover object-center"
+      />
     </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
   </div>
-</nav>
 
-   <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-56 md:px-12 md:pt-32">
- <div className="grid w-full items-center gap-10 lg:grid-cols-2">
+  {/* RIGHT - TEXT */}
+  <div>
+    <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
+      Full Stack Developer
+    </p>
 
-  
-    <div>
-      <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
-        Full Stack Developer
-      </p>
-
-      <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-  I design and build modern websites that are structured, functional, and built for real clients.
+    <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-6xl">
+  {headlineText}
+  <span className="animate-pulse">|</span>
 </h1>
-      <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--subtext)]">
-        From clean UI to real-world functionality, I create responsive applications that don’t just look good — they work the way they should.
-      </p>
 
-      <div className="mt-9 flex flex-wrap gap-4">
-        <a
-          href="#work"
-          className="rounded-full bg-[var(--accent)] px-7 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
-        >
-          View Work
-        </a>
+   <h2 className="mt-6 text-2xl font-medium text-[var(--accent)]">
+  {typedText}
+  <span className="animate-pulse">|</span>
+</h2>
 
-        <a
-          href="#contact"
-          className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
-        >
-          Contact Me
-        </a>
-<a
-  href="/ParkerLaurenResume.pdf"
-  download
-  className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
->
-  View Resume
-</a>
+    <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--subtext)]">
+      From clean UI to real-world functionality, I create responsive applications that don’t just look good — they work the way they should.
+    </p>
 
-      </div>
-   
-      <p className="mt-5 text-sm text-[var(--subtext)]">
-        Built and deployed multiple client websites • Available for new projects
-      </p>
+    <div className="mt-9 flex flex-wrap gap-4">
+      <a
+        href="#contact"
+        className="rounded-full bg-[var(--accent)] px-7 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
+      >
+        Start Project
+      </a>
+
+      <a
+        href="#work"
+        className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      >
+        View Work
+      </a>
+
+      <a
+        href="/ParkerLaurenResume.pdf"
+        download
+        className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      >
+        View Resume
+      </a>
     </div>
-    </div>
 
-   
-   
-<div className="relative mx-auto mt-10 w-full max-w-xs overflow-hidden rounded-3xl md:mt-0 sm:max-w-sm lg:max-w-lg">
-  <div className="relative aspect-[4/5] w-full">
-    <Image
-      src="/me.jpg"
-      alt="Lauren Parker working at a laptop"
-      fill
-      priority
-      sizes="(max-width: 768px) 85vw, 40vw"
-      className="object-cover object-center"
-    />
+    <p className="mt-5 text-sm text-[var(--subtext)]">
+      Built and deployed multiple client websites • Available for new projects
+    </p>
   </div>
-
-  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-</div>
 </section>
 
       <section id="work" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
@@ -496,21 +639,46 @@ const toggleTheme = () => {
 
 <section className="mx-auto max-w-7xl px-6 py-24 md:px-12">
   <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
-    Testimonial
+    Client Feedback
   </p>
 
   <h2 className="mt-3 text-4xl font-semibold tracking-tight">
-    What it’s like to work with me.
+    What clients say about working with me.
   </h2>
 
-  <div className="mt-10 rounded-3xl border border-[var(--border)] bg-[var(--card)] p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
-    <p className="text-lg leading-8 text-[var(--text)]">
-      “Lauren made the entire process easy to understand and delivered a site that actually represents our business. The structure, design, and overall flow feel professional and intentional.”
-    </p>
+  <div className="mt-10 overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--card)] p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
+    <motion.div
+      key={testimonialIndex}
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -40 }}
+      transition={{ duration: 0.5 }}
+    >
+      <p className="text-lg leading-8 text-[var(--text)]">
+        “{testimonials[testimonialIndex].quote}”
+      </p>
 
-    <p className="mt-6 text-sm text-[var(--subtext)]">
-      — D. Patterson, Founder of PMP Inc.
-    </p>
+      <p className="mt-6 text-sm text-[var(--subtext)]">
+        — {testimonials[testimonialIndex].name},{" "}
+        {testimonials[testimonialIndex].role}
+      </p>
+    </motion.div>
+
+    <div className="mt-8 flex gap-2">
+      {testimonials.map((_, index) => (
+        <button
+          key={index}
+          type="button"
+          onClick={() => setTestimonialIndex(index)}
+          className={`h-2.5 rounded-full transition-all ${
+            testimonialIndex === index
+              ? "w-8 bg-[var(--accent)]"
+              : "w-2.5 bg-[var(--border)]"
+          }`}
+          aria-label={`View testimonial ${index + 1}`}
+        />
+      ))}
+    </div>
   </div>
 </section>
 
