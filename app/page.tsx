@@ -102,7 +102,7 @@ const projects = [
 
 const skillGroups = [
   {
-    title: "Frontend",
+    title: "Client Websites",
     skills: [
       "HTML",
       "CSS",
@@ -114,7 +114,7 @@ const skillGroups = [
     ],
   },
   {
-    title: "Backend & Logic",
+    title: "Application Logic",
     skills: [
       "API Routes",
       "Form Handling",
@@ -125,7 +125,7 @@ const skillGroups = [
     ],
   },
   {
-    title: "Tools & Deployment",
+    title: "Delivery & Deployment",
     skills: [
       "Git",
       "GitHub",
@@ -223,59 +223,58 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         </div>
       </nav>
 
-      <section className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-28 md:px-12">
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]"
+    <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-28 md:px-12">
+  <div className="grid w-full items-center gap-12 md:grid-cols-2">
+
+    {/* LEFT SIDE (TEXT) */}
+    <div>
+      <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
+        Full Stack Developer
+      </p>
+
+      <h1 className="text-5xl font-semibold leading-tight tracking-tight md:text-7xl">
+        I design and build modern websites that are structured, functional, and built for real clients.
+      </h1>
+
+      <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--subtext)]">
+        From clean UI to real-world functionality, I create responsive applications that don’t just look good — they work the way they should.
+      </p>
+
+      <div className="mt-9 flex flex-wrap gap-4">
+        <a
+          href="#work"
+          className="rounded-full bg-[var(--accent)] px-7 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
         >
-          Full Stack Developer
-        </motion.p>
+          View Work
+        </a>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="max-w-5xl text-5xl font-semibold leading-tight tracking-tight md:text-7xl"
+        <a
+          href="#contact"
+          className="rounded-full border border-[var(--border)] bg-white/70 px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
-         I design and build modern websites that are structured, functional, and built for real clients.
-        </motion.h1>
+          Contact Me
+        </a>
+      </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mt-6 max-w-2xl text-lg leading-8 text-[var(--subtext)]"
-        >
-         From clean UI to real-world functionality, I create responsive applications that don’t just look good — they work the way they should.
-        </motion.p>
+      <p className="mt-5 text-sm text-[var(--subtext)]">
+        Built and deployed multiple client websites • Available for new projects
+      </p>
+    </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-9 flex flex-wrap gap-4"
-        >
-          <a
-            href="#work"
-            className="rounded-full bg-[var(--accent)] px-7 py-3 font-medium text-white shadow-sm hover:bg-[var(--accent-dark)]"
-          >
-            View Work
-          </a>
+    {/* RIGHT SIDE (IMAGE) */}
+    <div className="relative h-[400px] w-full overflow-hidden rounded-3xl md:h-[520px]">
+      <img
+        src="/herosec.jpg"
+        alt="Lauren Parker"
+        className="h-full w-full object-cover"
+      />
 
-          <a
-            href="#contact"
-            className="rounded-full border border-[var(--border)] bg-white/70 px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
-          >
-            Contact Me
-          </a>
-        </motion.div>
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+    </div>
 
-        <p className="mt-5 text-sm text-[var(--subtext)]">
-          Built and deployed multiple client websites • Currently taking on new
-          projects
-        </p>
-      </section>
+  </div> {/* 👈 THIS WAS MISSING */}
+</section>
 
       <section id="work" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
         <div className="mb-12">
