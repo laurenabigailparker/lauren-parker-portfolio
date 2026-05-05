@@ -484,46 +484,45 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 </section>
 
       <section
-        id="skills"
-        className="mx-auto max-w-7xl px-6 py-24 md:px-12"
+  id="skills"
+  className="mx-auto max-w-7xl px-6 py-24 md:px-12"
+>
+  <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
+    Skills
+  </p>
+
+  <h2 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight">
+    How I build real projects.
+  </h2>
+
+  <p className="mt-4 max-w-2xl text-[var(--subtext)]">
+    These are the tools and systems I use to build real client projects — from responsive interfaces to application logic, deployment, and client delivery.
+  </p>
+
+  <div className="mt-12 grid gap-6 md:grid-cols-3">
+    {skillGroups.map((group) => (
+      <div
+        key={group.title}
+        className="rounded-3xl border border-[var(--border)] bg-white/70 p-6 shadow-[0_12px_35px_rgba(30,27,24,0.05)] transition hover:-translate-y-1"
       >
-        <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
-          Technical Skills
-        </p>
+        <h3 className="mb-5 text-lg font-semibold text-[var(--text)]">
+          {group.title}
+        </h3>
 
-        <h2 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight">
-          What I actually use to build.
-        </h2>
-
-        <p className="mt-4 max-w-2xl text-[var(--subtext)]">
-          These are the tools and concepts I’ve been using across client
-          websites, portfolio builds, deployments, forms, and application logic.
-        </p>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {skillGroups.map((group) => (
-            <div
-              key={group.title}
-              className="rounded-3xl border border-[var(--border)] bg-white/70 p-6 shadow-[0_12px_35px_rgba(30,27,24,0.05)]"
+        <div className="flex flex-wrap gap-2">
+          {group.skills.map((skill) => (
+            <span
+              key={skill}
+              className="rounded-full border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--text)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
-              <h3 className="mb-5 text-lg font-semibold text-[var(--text)]">
-                {group.title}
-              </h3>
-
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--text)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+              {skill}
+            </span>
           ))}
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 md:px-12">
         <div className="rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
