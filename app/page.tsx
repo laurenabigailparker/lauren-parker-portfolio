@@ -243,7 +243,7 @@ const toggleTheme = () => {
   </div>
 </nav>
 
-    <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-64 md:px-12 md:pt-32">
+   <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-56 md:px-12 md:pt-32">
  <div className="grid w-full items-center gap-10 lg:grid-cols-2">
 
   
