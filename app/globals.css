@@ -11,6 +11,21 @@
   --border: #e5ded6;
 }
 
+.dark {
+  --bg: #14110e;
+  --section: #1c1814;
+  --card: #211c17;
+  --text: #f8f5f0;
+  --subtext: #c9beb3;
+  --accent: #c6a16e;
+  --accent-dark: #a87f4f;
+  --border: #3a3028;
+}
+
+body {
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
 * {
   box-sizing: border-box;
 }

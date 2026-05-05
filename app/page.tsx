@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CertModal from "@/components/CertModal";
@@ -162,23 +162,51 @@ export default function Home() {
     title: string;
     image: string | null;
   } | null>(null);
- const router = useRouter();
 
-const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+  const router = useRouter();
 
-  const formData = new FormData(e.currentTarget);
+  // 🌙 DARK MODE STATE
+  const [darkMode, setDarkMode] = useState(false);
 
-  await fetch("https://formspree.io/f/mwvabobn", {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
 
-  router.push("/thank-you");
-};
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextMode = !darkMode;
+    setDarkMode(nextMode);
+
+    if (nextMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  // 📩 FORM SUBMIT
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    await fetch("https://formspree.io/f/mwvabobn", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    router.push("/thank-you");
+  };
+
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl">
@@ -219,6 +247,13 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 >
   LinkedIn
 </a>
+
+<button
+  onClick={toggleTheme}
+  className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)] hover:text-[var(--accent)]"
+>
+  {darkMode ? "Light" : "Dark"}
+</button>
           </div>
         </div>
       </nav>
@@ -261,10 +296,10 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       </p>
     </div>
 
-    {/* RIGHT SIDE (IMAGE) */}
+   
     <div className="relative h-[400px] w-full overflow-hidden rounded-3xl md:h-[520px]">
       <img
-        src="/herosec.jpg"
+        src="/me.jpg"
         alt="Lauren Parker"
         className="h-full w-full object-cover"
       />
@@ -273,7 +308,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
     </div>
 
-  </div> {/* 👈 THIS WAS MISSING */}
+  </div> 
 </section>
 
       <section id="work" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
@@ -390,7 +425,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <div className="flex justify-center md:justify-start">
               <div className="relative h-[360px] w-[300px] overflow-hidden rounded-3xl border border-[var(--border)] shadow-[0_30px_80px_rgba(30,27,24,0.12)]">
                 <Image
-                  src="/me.jpg"
+                  src="/herosec.jpg"
                   alt="Lauren Parker"
                   fill
                   className="object-cover transition duration-500 hover:scale-105"
