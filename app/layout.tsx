@@ -16,8 +16,12 @@ export const metadata: Metadata = {
   title: "Lauren Parker | Full Stack Developer",
   description:
     "Full Stack Developer building modern websites, applications, and client-focused digital experiences.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
