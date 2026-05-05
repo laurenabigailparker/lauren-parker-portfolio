@@ -27,17 +27,17 @@ const projects = [
     title: "Gateway Rock Design",
     type: "Client Website / Case Study",
     description:
-      "Luxury interior design site built for services, branding, and client conversion.",
+      "Luxury interior design website built to clearly present services and convert interest into real client inquiries.",
     tech: ["Next.js", "React", "Tailwind", "Vercel", "Freeform"],
     image: "/gatewaypic.jpg",
     live: "https://gateway-rock-design.vercel.app/",
     caseStudy: {
       problem:
-        "The client needed a high-end website that made their services feel polished, clear, and easy to understand.",
+        "The client needed a high-end website that made their services feel clear, structured, and easy for potential clients to understand.",
       solution:
-        "I built a responsive site with a luxury-inspired layout, service-focused sections, and a clean inquiry flow.",
+        "I built a responsive site with a refined layout, service-focused sections, and a streamlined inquiry flow to guide users through the experience.",
       result:
-        "The final site gives the business a stronger online presence and makes it easier for potential clients to reach out.",
+        "The site improves how the business presents its services and makes it easier for potential clients to understand offerings and take action.",
     },
   },
   {
@@ -52,14 +52,14 @@ const projects = [
       problem:
         "The client needed a warm, trustworthy website that explained care services without feeling cold or clinical.",
       solution:
-        "I created a clean, welcoming layout with service-focused sections, soft visuals, and clear navigation.",
+        "I created a structured, welcoming layout with service-focused sections, soft visuals, and clear navigation.",
       result:
         "The site helps the business communicate professionalism, care, and trust to potential families.",
     },
   },
   {
     title: "PMP Inc",
-    type: "Currently Building / Case Study",
+    type: "Client Website / Case Study",
     description:
       "Modern business website focused on structured services and clean UI.",
     tech: ["Next.js", "React", "Tailwind", "Vercel", "Freeform"],
@@ -79,18 +79,18 @@ const projects = [
     title: "Smart Budget Planner",
     type: "Full Stack Application / Case Study",
     description:
-      "Interactive budgeting app with expense tracking, categories, and calculations.",
+      "Interactive budgeting application designed to handle user input, calculations, and real-time updates.",
     tech: ["React", "Next.js", "State Management", "Application Logic"],
     image: "/budgetpic.jpg",
     live: "https://expense-tracker-5e2rdqtwg-laurenabigailparkers-projects.vercel.app/",
     github: "https://github.com/laurenabigailparker/expense-tracker",
     caseStudy: {
       problem:
-        "I wanted to build something that showed more than layout skills — something with user input, calculations, and real logic.",
+        "I wanted to build something that went beyond static design and demonstrated real functionality, including user input, data handling, and dynamic calculations.",
       solution:
-        "I created a budgeting tool where users can enter income, add expenses, organize spending, and see updated totals.",
+        "I developed a budgeting application where users can track income, add expenses, categorize spending, and see real-time updates to their totals using state management.",
       result:
-        "The app shows interactive UI, state management, dynamic calculations, and practical application logic.",
+        "The project demonstrates interactive UI, real-time data updates, and practical application logic, showing my ability to build functional, user-driven applications.",
     },
   },
 ];
@@ -209,8 +209,7 @@ export default function Home() {
           transition={{ delay: 0.1 }}
           className="max-w-5xl text-5xl font-semibold leading-tight tracking-tight md:text-7xl"
         >
-          I design and build modern websites that actually work for real
-          clients.
+         I design and build modern websites that are structured, functional, and built for real clients.
         </motion.h1>
 
         <motion.p
@@ -219,8 +218,7 @@ export default function Home() {
           transition={{ delay: 0.2 }}
           className="mt-6 max-w-2xl text-lg leading-8 text-[var(--subtext)]"
         >
-          From clean UI to functional builds, I create responsive websites and
-          applications that are built to perform — not just look good.
+         From clean UI to real-world functionality, I create responsive applications that don’t just look good — they work the way they should.
         </motion.p>
 
         <motion.div
@@ -383,21 +381,15 @@ export default function Home() {
 
               <div className="mt-6 space-y-5 text-lg leading-8 text-[var(--subtext)]">
                 <p>
-                  I’m a Full Stack Developer with a background in military
-                  logistics, bringing strong problem-solving, structure, and
-                  attention to detail into every build.
+                 I’m a Full Stack Developer with a background in military logistics, bringing structure, problem-solving, and attention to detail into every build.
                 </p>
 
                 <p>
-                  I’ve worked on real client websites and applications, focusing
-                  on clean design, smooth user experience, and making sure
-                  everything functions the way it should.
+                 I’ve worked on real client websites and applications, focusing on creating experiences that are clear, functional, and easy for users to navigate. I care about how things look, but more importantly, how they work.
                 </p>
 
                 <p>
-                  I’m comfortable working across frontend and backend concepts,
-                  from building polished interfaces to handling forms, API
-                  routes, deployment, and real-world functionality.
+                 I’m comfortable working across both frontend and backend concepts — from building responsive interfaces to handling form logic, API routes, and deployment. My goal is always the same: build something that functions reliably and makes sense to the user.
                 </p>
               </div>
             </div>
@@ -496,7 +488,7 @@ export default function Home() {
           </p>
 
           <h2 className="mt-3 text-4xl font-semibold tracking-tight">
-            Let’s build something that actually works.
+            Let’s build something that’s structured, functional, and built to perform.
           </h2>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--subtext)]">
