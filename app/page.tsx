@@ -10,7 +10,7 @@ const projects = [
     description:
       "My personal brand where I design and build clean, functional websites for real clients.",
     tech: ["Next.js", "React", "Tailwind", "Vercel"],
-    image: "/stuidos.jpg",
+    image: "/studios.jpg",
     live: "https://laurenparkerstudio.com",
     caseStudy: {
       problem:
