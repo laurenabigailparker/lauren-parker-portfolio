@@ -4,13 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CertModal from "@/components/CertModal";
+import { useRouter } from "next/navigation";
 
 const projects = [
   {
     title: "Lauren Parker Studios",
     type: "Personal Brand / Freelance",
     description:
-      "My personal brand where I design and build clean, functional websites for real clients.",
+      "Personal brand site built to present freelance work, services, and development style in one polished place.",
     tech: ["Next.js", "React", "Tailwind", "Vercel"],
     image: "/studios.jpg",
     live: "https://laurenparkerstudio.com",
@@ -18,33 +19,35 @@ const projects = [
       problem:
         "I needed a polished home for my freelance work that felt professional, personal, and easy to send to clients.",
       solution:
-        "I built a clean brand site that presents my work, services, and development style in one place.",
+        "I built a responsive brand site with structured sections, service positioning, and project showcases.",
       result:
-        "The site gives my freelance work a stronger identity and makes it easier to share what I build.",
+        "Designed and built over ~1 week with 5+ structured sections, fully responsive layout, and a single shareable link for client outreach.",
     },
   },
+
   {
     title: "Gateway Rock Design",
     type: "Client Website / Case Study",
     description:
-      "Luxury interior design website built to clearly present services and convert interest into real client inquiries.",
-    tech: ["Next.js", "React", "Tailwind", "Vercel", "Freeform"],
+      "Luxury interior design website built to clearly present services and convert interest into client inquiries.",
+    tech: ["Next.js", "React", "Tailwind", "Vercel"],
     image: "/gatewaypic.jpg",
     live: "https://gateway-rock-design.vercel.app/",
     caseStudy: {
       problem:
-        "The client needed a high-end website that made their services feel clear, structured, and easy for potential clients to understand.",
+        "The client needed a high-end website that made their services feel clear, structured, and easy to understand.",
       solution:
-        "I built a responsive site with a refined layout, service-focused sections, and a streamlined inquiry flow to guide users through the experience.",
+        "I developed a responsive site with a refined layout, service-focused sections, and a streamlined inquiry flow.",
       result:
-        "The site improves how the business presents its services and makes it easier for potential clients to understand offerings and take action.",
+        "Built and deployed in ~2–3 weeks with fully responsive pages, improved service clarity, and a structure designed to support client conversion.",
     },
   },
+
   {
     title: "Golden Life Adult Care",
     type: "Client Website / Case Study",
     description:
-      "Website built to communicate trust, services, and client engagement.",
+      "Warm, service-focused website built to communicate trust, care, and client engagement.",
     tech: ["React", "Tailwind", "Vercel"],
     image: "/goldenlifepic.jpg",
     live: "https://golden-life-adult-care.vercel.app/",
@@ -52,29 +55,31 @@ const projects = [
       problem:
         "The client needed a warm, trustworthy website that explained care services without feeling cold or clinical.",
       solution:
-        "I created a structured, welcoming layout with service-focused sections, soft visuals, and clear navigation.",
+        "I created a welcoming layout with clear navigation, structured service sections, and responsive design.",
       result:
-        "The site helps the business communicate professionalism, care, and trust to potential families.",
+        "Completed in ~2 weeks with a multi-section responsive layout focused on clarity, usability, and improved service communication.",
     },
   },
+
   {
     title: "PMP Inc",
     type: "Client Website / Case Study",
     description:
-      "Modern business website focused on structured services and clean UI.",
-    tech: ["Next.js", "React", "Tailwind", "Vercel", "Freeform"],
+      "Modern business website focused on structured services, responsive pages, and clear user flow.",
+    tech: ["Next.js", "React", "Tailwind", "Vercel"],
     image: "/pmpincpic.jpg",
     live: "https://pmpincprofessionals.com/en",
     github: "https://github.com/laurenabigailparker/pmp-inc-website",
     caseStudy: {
       problem:
-        "The business needed a more organized website that clearly presented services and felt easier for users to navigate.",
+        "The business needed a more organized website that clearly presented services and improved navigation.",
       solution:
-        "I’m building a modern layout with structured service sections, responsive pages, and form handling for inquiries.",
+        "I built a structured layout with responsive pages, service sections, and form handling for inquiries.",
       result:
-        "The project is in progress, but the build is focused on improving clarity, usability, and client communication.",
+        "Currently finalizing a multi-page build (~2–3 week development timeline) focused on improving usability, structure, and client communication.",
     },
   },
+
   {
     title: "Smart Budget Planner",
     type: "Full Stack Application / Case Study",
@@ -86,11 +91,11 @@ const projects = [
     github: "https://github.com/laurenabigailparker/expense-tracker",
     caseStudy: {
       problem:
-        "I wanted to build something that went beyond static design and demonstrated real functionality, including user input, data handling, and dynamic calculations.",
+        "I wanted to build something that demonstrated real functionality beyond static design.",
       solution:
-        "I developed a budgeting application where users can track income, add expenses, categorize spending, and see real-time updates to their totals using state management.",
+        "I developed a budgeting app with dynamic inputs, categorized expenses, and real-time calculations using state management.",
       result:
-        "The project demonstrates interactive UI, real-time data updates, and practical application logic, showing my ability to build functional, user-driven applications.",
+        "Built over ~1–2 weeks, demonstrating dynamic state management, real-time calculations, and interactive user input handling.",
     },
   },
 ];
@@ -157,7 +162,23 @@ export default function Home() {
     title: string;
     image: string | null;
   } | null>(null);
+ const router = useRouter();
 
+const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.currentTarget);
+
+  await fetch("https://formspree.io/f/mwvabobn", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  router.push("/thank-you");
+};
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl">
@@ -190,6 +211,14 @@ export default function Home() {
             >
               GitHub
             </a>
+            <a
+  href="https://www.linkedin.com/in/lauren-parker-9a7a10381"
+  target="_blank"
+  rel="noreferrer"
+  className="hover:text-[var(--accent)]"
+>
+  LinkedIn
+</a>
           </div>
         </div>
       </nav>
@@ -397,6 +426,63 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-24 md:px-12">
+  <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
+    Process
+  </p>
+
+  <h2 className="mt-3 text-4xl font-semibold tracking-tight">
+    How I think through projects.
+  </h2>
+
+  <p className="mt-5 max-w-2xl text-lg text-[var(--subtext)]">
+    I focus on building structured, functional experiences that actually solve problems — not just designs that look good. With a background in logistics and operations, I naturally think in systems, clarity, and efficiency.
+  </p>
+
+  <div className="mt-10 grid gap-6 md:grid-cols-3">
+    <div className="rounded-2xl border p-6">
+      <h3 className="font-semibold">1. Understand</h3>
+      <p className="mt-2 text-sm text-[var(--subtext)]">
+       I start by understanding the client’s goals, users, and what the site actually needs to accomplish — not just what it should look like.
+      </p>
+    </div>
+
+    <div className="rounded-2xl border p-6">
+      <h3 className="font-semibold">2. Build</h3>
+      <p className="mt-2 text-sm text-[var(--subtext)]">
+       I develop clean, responsive interfaces with structured layouts, clear user flow, and real functionality — not just static pages.
+      </p>
+    </div>
+
+    <div className="rounded-2xl border p-6">
+      <h3 className="font-semibold">3. Refine</h3>
+      <p className="mt-2 text-sm text-[var(--subtext)]">
+       I test, improve usability, and refine the experience to ensure everything is intuitive, performs well, and supports real-world use.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section className="mx-auto max-w-7xl px-6 py-24 md:px-12">
+  <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
+    Testimonial
+  </p>
+
+  <h2 className="mt-3 text-4xl font-semibold tracking-tight">
+    What it’s like to work with me.
+  </h2>
+
+  <div className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
+    <p className="text-lg leading-8 text-[var(--text)]">
+      “Lauren made the entire process easy to understand and delivered a site that actually represents our business. The structure, design, and overall flow feel professional and intentional.”
+    </p>
+
+    <p className="mt-6 text-sm text-[var(--subtext)]">
+      — D. Patterson, Founder of PMP Inc.
+    </p>
+  </div>
+</section>
+
       <section
         id="skills"
         className="mx-auto max-w-7xl px-6 py-24 md:px-12"
@@ -446,7 +532,7 @@ export default function Home() {
           </p>
 
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-            Verified technical training.
+            Certifications & Technical Training.
           </h2>
 
           <p className="mt-3 max-w-2xl text-sm text-[var(--subtext)]">
@@ -482,21 +568,22 @@ export default function Home() {
       </section>
 
    <section id="contact" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
-  <div className="grid gap-10 rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)] md:grid-cols-2 md:p-12">
-    
+  <div className="grid items-start gap-12 rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)] lg:grid-cols-[1fr_420px] lg:p-12">
     {/* left side */}
-    <div>
+    <div className="min-w-0">
       <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
         Contact
       </p>
 
-      <h2 className="mt-3 text-4xl font-semibold tracking-tight">
-        Let’s build something that’s structured, functional, and built to perform.
+      <h2 className="mt-3 max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+        Let’s build something that’s structured, functional, and built to
+        perform.
       </h2>
 
-      <p className="mt-5 text-lg leading-8 text-[var(--subtext)]">
-        I’m available for freelance projects, collaborations, and new opportunities.
-        Tell me what you’re building — I’ll get back to you within 1–2 business days.
+      <p className="mt-5 max-w-xl text-lg leading-8 text-[var(--subtext)]">
+        I’m available for freelance projects, collaborations, and new
+        opportunities. Tell me what you’re building — I’ll get back to you
+        within 1–2 business days.
       </p>
 
       <p className="mt-5 text-sm text-[var(--subtext)]">
@@ -533,16 +620,10 @@ export default function Home() {
 
     {/* form */}
     <form
-      action="https://formspree.io/f/mwvabobn"
-      method="POST"
-      className="space-y-4"
+      onSubmit={handleContactSubmit}
+      className="w-full space-y-4 rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-6"
     >
       <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
-     <input
-  type="hidden"
-  name="_next"
-  value="https://lauren-parker-portfolio.vercel.app/thank-you"
-/>
 
       <div>
         <label className="mb-2 block text-sm font-medium">Name</label>
@@ -551,7 +632,7 @@ export default function Home() {
           name="name"
           required
           placeholder="Your name"
-          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 outline-none focus:border-[var(--accent)]"
+          className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
 
@@ -562,7 +643,7 @@ export default function Home() {
           name="email"
           required
           placeholder="you@example.com"
-          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 outline-none focus:border-[var(--accent)]"
+          className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
 
@@ -573,7 +654,7 @@ export default function Home() {
           required
           rows={5}
           placeholder="Tell me about your project..."
-          className="w-full resize-none rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 outline-none focus:border-[var(--accent)]"
+          className="w-full resize-none rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
 
