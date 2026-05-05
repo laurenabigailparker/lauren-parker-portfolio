@@ -243,8 +243,8 @@ const toggleTheme = () => {
   </div>
 </nav>
 
-    <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-28 md:px-12">
-  <div className="grid w-full items-center gap-12 md:grid-cols-2">
+    <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-64 md:px-12 md:pt-32">
+ <div className="grid w-full items-center gap-10 lg:grid-cols-2">
 
   
     <div>
@@ -253,9 +253,8 @@ const toggleTheme = () => {
       </p>
 
       <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-        I design and build modern websites that are structured, functional, and built for real clients.
-      </h1>
-
+  I design and build modern websites that are structured, functional, and built for real clients.
+</h1>
       <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--subtext)]">
         From clean UI to real-world functionality, I create responsive applications that don’t just look good — they work the way they should.
       </p>
@@ -292,7 +291,7 @@ const toggleTheme = () => {
 
    
    
-<div className="relative mx-auto mt-10 w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_25px_80px_rgba(30,27,24,0.12)] md:mt-0 md:max-w-md lg:max-w-lg">
+<div className="relative mx-auto mt-10 w-full max-w-xs overflow-hidden rounded-3xl md:mt-0 sm:max-w-sm lg:max-w-lg">
   <div className="relative aspect-[4/5] w-full">
     <Image
       src="/me.jpg"
