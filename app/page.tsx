@@ -481,42 +481,115 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
-        <div className="rounded-3xl border border-[var(--border)] bg-white p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)] md:p-14">
-          <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
-            Contact
-          </p>
+   <section id="contact" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
+  <div className="grid gap-10 rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)] md:grid-cols-2 md:p-12">
+    
+    {/* left side */}
+    <div>
+      <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
+        Contact
+      </p>
 
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight">
-            Let’s build something that’s structured, functional, and built to perform.
-          </h2>
+      <h2 className="mt-3 text-4xl font-semibold tracking-tight">
+        Let’s build something that’s structured, functional, and built to perform.
+      </h2>
 
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--subtext)]">
-            I’m open to freelance projects, collaborations, and new
-            opportunities. If you have a project or role in mind, feel free to
-            reach out.
-          </p>
+      <p className="mt-5 text-lg leading-8 text-[var(--subtext)]">
+        I’m available for freelance projects, collaborations, and new opportunities.
+        Tell me what you’re building — I’ll get back to you within 1–2 business days.
+      </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="mailto:laurenabigailparker@gmail.com"
-              className="rounded-full bg-[var(--accent)] px-7 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
-            >
-              Email Me
-            </a>
+      <p className="mt-5 text-sm text-[var(--subtext)]">
+        Available for new projects · May 2026
+      </p>
 
-            <a
-              href="https://github.com/laurenabigailparker"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-[var(--border)] bg-[var(--bg)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
-            >
-              GitHub
-            </a>
-          </div>
-        </div>
-      </section>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <a
+          href="#contact"
+          className="rounded-full bg-[var(--accent)] px-6 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
+        >
+          Start a Project
+        </a>
 
+        <a
+          href="https://github.com/laurenabigailparker"
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/lauren-parker-9a7a10381"
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        >
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    {/* form */}
+    <form
+      action="https://formspree.io/f/mwvabobn"
+      method="POST"
+      className="space-y-4"
+    >
+      <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
+     <input
+  type="hidden"
+  name="_next"
+  value="https://lauren-parker-portfolio.vercel.app/thank-you"
+/>
+
+      <div>
+        <label className="mb-2 block text-sm font-medium">Name</label>
+        <input
+          type="text"
+          name="name"
+          required
+          placeholder="Your name"
+          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 outline-none focus:border-[var(--accent)]"
+        />
+      </div>
+
+      <div>
+        <label className="mb-2 block text-sm font-medium">Email</label>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="you@example.com"
+          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 outline-none focus:border-[var(--accent)]"
+        />
+      </div>
+
+      <div>
+        <label className="mb-2 block text-sm font-medium">Message</label>
+        <textarea
+          name="message"
+          required
+          rows={5}
+          placeholder="Tell me about your project..."
+          className="w-full resize-none rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 outline-none focus:border-[var(--accent)]"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="w-full rounded-full bg-[var(--accent)] px-7 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
+      >
+        Send Message
+      </button>
+
+      <p className="text-center text-xs text-[var(--subtext)]">
+        I usually respond within 1–2 business days.
+      </p>
+    </form>
+  </div>
+</section>
 <CertModal
   isOpen={!!openCert}
   onClose={() => setOpenCert(null)}
