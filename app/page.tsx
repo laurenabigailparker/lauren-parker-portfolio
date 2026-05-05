@@ -165,32 +165,22 @@ export default function Home() {
 
   const router = useRouter();
 
-  // 🌙 DARK MODE STATE
-  const [darkMode, setDarkMode] = useState(false);
+  // dark mode
+const [darkMode, setDarkMode] = useState(() => {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem("theme") === "dark";
+});
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+useEffect(() => {
+  document.documentElement.classList.toggle("dark", darkMode);
+  localStorage.setItem("theme", darkMode ? "dark" : "light");
+}, [darkMode]);
 
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      setDarkMode(true);
-    }
-  }, []);
+const toggleTheme = () => {
+  setDarkMode((prev) => !prev);
+};
 
-  const toggleTheme = () => {
-    const nextMode = !darkMode;
-    setDarkMode(nextMode);
-
-    if (nextMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
-
-  // 📩 FORM SUBMIT
+  // form sub
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -210,64 +200,59 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-12">
-          <a
-            href="#"
-            className="text-xs font-semibold tracking-[0.35em] text-[var(--accent)]"
-          >
-            LAUREN PARKER
-          </a>
+  <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-12">
+    <a
+      href="#"
+      className="text-xs font-semibold tracking-[0.35em] text-[var(--accent)]"
+    >
+      LAUREN PARKER
+    </a>
 
-          <div className="flex gap-5 text-sm text-[var(--subtext)] md:gap-8">
-            <a href="#work" className="hover:text-[var(--accent)]">
-              Work
-            </a>
-            <a href="#about" className="hover:text-[var(--accent)]">
-              About
-            </a>
-            <a href="#skills" className="hover:text-[var(--accent)]">
-              Skills
-            </a>
-            <a href="#contact" className="hover:text-[var(--accent)]">
-              Contact
-            </a>
-            <a
-              href="https://github.com/laurenabigailparker"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-[var(--accent)]"
-            >
-              GitHub
-            </a>
-            <a
-  href="https://www.linkedin.com/in/lauren-parker-9a7a10381"
-  target="_blank"
-  rel="noreferrer"
-  className="hover:text-[var(--accent)]"
->
-  LinkedIn
-</a>
+    <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--subtext)] md:gap-7">
+      <a href="#work" className="hover:text-[var(--accent)]">Work</a>
+      <a href="#about" className="hover:text-[var(--accent)]">About</a>
+      <a href="#skills" className="hover:text-[var(--accent)]">Skills</a>
+      <a href="#contact" className="hover:text-[var(--accent)]">Contact</a>
 
-<button
-  onClick={toggleTheme}
-  className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)] hover:text-[var(--accent)]"
->
-  {darkMode ? "Light" : "Dark"}
-</button>
-          </div>
-        </div>
-      </nav>
+      <a
+        href="https://github.com/laurenabigailparker"
+        target="_blank"
+        rel="noreferrer"
+        className="hover:text-[var(--accent)]"
+      >
+        GitHub
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/lauren-parker-9a7a10381"
+        target="_blank"
+        rel="noreferrer"
+        className="hover:text-[var(--accent)]"
+      >
+        LinkedIn
+      </a>
+
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)] hover:text-[var(--accent)]"
+      >
+        {darkMode ? "Light" : "Dark"}
+      </button>
+    </div>
+  </div>
+</nav>
 
     <section className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-28 md:px-12">
   <div className="grid w-full items-center gap-12 md:grid-cols-2">
 
-    {/* LEFT SIDE (TEXT) */}
+  
     <div>
       <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
         Full Stack Developer
       </p>
 
-      <h1 className="text-5xl font-semibold leading-tight tracking-tight md:text-7xl">
+      <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
         I design and build modern websites that are structured, functional, and built for real clients.
       </h1>
 
@@ -285,30 +270,42 @@ export default function Home() {
 
         <a
           href="#contact"
-          className="rounded-full border border-[var(--border)] bg-white/70 px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
           Contact Me
         </a>
-      </div>
+<a
+  href="/ParkerLaurenResume.pdf"
+  download
+  className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+>
+  View Resume
+</a>
 
+      </div>
+   
       <p className="mt-5 text-sm text-[var(--subtext)]">
         Built and deployed multiple client websites • Available for new projects
       </p>
     </div>
-
-   
-    <div className="relative h-[400px] w-full overflow-hidden rounded-3xl md:h-[520px]">
-      <img
-        src="/me.jpg"
-        alt="Lauren Parker"
-        className="h-full w-full object-cover"
-      />
-
-      {/* OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
     </div>
 
-  </div> 
+   
+   
+<div className="relative mx-auto mt-10 w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_25px_80px_rgba(30,27,24,0.12)] md:mt-0 md:max-w-md lg:max-w-lg">
+  <div className="relative aspect-[4/5] w-full">
+    <Image
+      src="/me.jpg"
+      alt="Lauren Parker working at a laptop"
+      fill
+      priority
+      sizes="(max-width: 768px) 85vw, 40vw"
+      className="object-cover object-center"
+    />
+  </div>
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+</div>
 </section>
 
       <section id="work" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
@@ -331,7 +328,7 @@ export default function Home() {
             <motion.article
               key={project.title}
               whileHover={{ y: -6 }}
-              className="overflow-hidden rounded-3xl border border-[var(--border)] bg-white shadow-[0_18px_50px_rgba(30,27,24,0.08)]"
+              className="overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--card)] shadow-[0_18px_50px_rgba(30,27,24,0.08)]"
             >
               <div className="relative h-52 overflow-hidden">
                 <Image
@@ -423,14 +420,15 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 py-28 md:px-12">
           <div className="grid items-center gap-16 md:grid-cols-2">
             <div className="flex justify-center md:justify-start">
-              <div className="relative h-[360px] w-[300px] overflow-hidden rounded-3xl border border-[var(--border)] shadow-[0_30px_80px_rgba(30,27,24,0.12)]">
-                <Image
-                  src="/herosec.jpg"
-                  alt="Lauren Parker"
-                  fill
-                  className="object-cover transition duration-500 hover:scale-105"
-                />
-              </div>
+            <div className="relative mx-auto h-[360px] w-full max-w-xs overflow-hidden rounded-3xl border border-[var(--border)] shadow-[0_30px_80px_rgba(30,27,24,0.12)] md:mx-0 md:h-[420px] md:max-w-sm">
+  <Image
+    src="/herosec.jpg"
+    alt="Lauren Parker"
+    fill
+    sizes="(max-width: 768px) 85vw, 320px"
+    className="object-cover object-center"
+  />
+</div>
             </div>
 
             <div>
@@ -506,7 +504,7 @@ export default function Home() {
     What it’s like to work with me.
   </h2>
 
-  <div className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
+  <div className="mt-10 rounded-3xl border border-[var(--border)] bg-[var(--card)] p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
     <p className="text-lg leading-8 text-[var(--text)]">
       “Lauren made the entire process easy to understand and delivered a site that actually represents our business. The structure, design, and overall flow feel professional and intentional.”
     </p>
@@ -537,7 +535,7 @@ export default function Home() {
     {skillGroups.map((group) => (
       <div
         key={group.title}
-        className="rounded-3xl border border-[var(--border)] bg-white/70 p-6 shadow-[0_12px_35px_rgba(30,27,24,0.05)] transition hover:-translate-y-1"
+        className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-[0_12px_35px_rgba(30,27,24,0.05)] transition hover:-translate-y-1"
       >
         <h3 className="mb-5 text-lg font-semibold text-[var(--text)]">
           {group.title}
@@ -559,7 +557,7 @@ export default function Home() {
 </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 md:px-12">
-        <div className="rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
+        <div className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
           <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
             Certifications
           </p>
@@ -601,7 +599,7 @@ export default function Home() {
       </section>
 
    <section id="contact" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
-  <div className="grid items-start gap-12 rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)] lg:grid-cols-[1fr_420px] lg:p-12">
+  <div className="grid items-start gap-12 rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)] lg:grid-cols-[1fr_420px] lg:p-12">
     {/* left side */}
     <div className="min-w-0">
       <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
@@ -665,7 +663,7 @@ export default function Home() {
           name="name"
           required
           placeholder="Your name"
-          className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--accent)]"
+          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
 
@@ -676,7 +674,7 @@ export default function Home() {
           name="email"
           required
           placeholder="you@example.com"
-          className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--accent)]"
+          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
 
@@ -687,7 +685,7 @@ export default function Home() {
           required
           rows={5}
           placeholder="Tell me about your project..."
-          className="w-full resize-none rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--accent)]"
+          className="w-full resize-none rounded-2xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
 
