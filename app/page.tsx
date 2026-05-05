@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import CertModal from "@/components/CertModal";
 
 const projects = [
   {
@@ -74,23 +76,23 @@ const projects = [
     },
   },
   {
-  title: "Smart Budget Planner",
-  type: "Full Stack Application / Case Study",
-  description:
-    "Interactive budgeting app with expense tracking, categories, and calculations.",
-  tech: ["React", "Next.js", "State Management", "Application Logic"],
-  image: "/budgetpic.jpg",
-  live: "https://expense-tracker-5e2rdqtwg-laurenabigailparkers-projects.vercel.app/",
-  github: "https://github.com/laurenabigailparker/expense-tracker",
-  caseStudy: {
-    problem:
-      "I wanted to build something that showed more than layout skills — something with user input, calculations, and real logic.",
-    solution:
-      "I created a budgeting tool where users can enter income, add expenses, organize spending, and see updated totals.",
-    result:
-      "The app shows interactive UI, state management, dynamic calculations, and practical application logic.",
+    title: "Smart Budget Planner",
+    type: "Full Stack Application / Case Study",
+    description:
+      "Interactive budgeting app with expense tracking, categories, and calculations.",
+    tech: ["React", "Next.js", "State Management", "Application Logic"],
+    image: "/budgetpic.jpg",
+    live: "https://expense-tracker-5e2rdqtwg-laurenabigailparkers-projects.vercel.app/",
+    github: "https://github.com/laurenabigailparker/expense-tracker",
+    caseStudy: {
+      problem:
+        "I wanted to build something that showed more than layout skills — something with user input, calculations, and real logic.",
+      solution:
+        "I created a budgeting tool where users can enter income, add expenses, organize spending, and see updated totals.",
+      result:
+        "The app shows interactive UI, state management, dynamic calculations, and practical application logic.",
+    },
   },
-}
 ];
 
 const skillGroups = [
@@ -114,7 +116,7 @@ const skillGroups = [
       "State Management",
       "Data Handling",
       "Application Logic",
-      "SQL Basics",
+      "SQL",
     ],
   },
   {
@@ -132,16 +134,32 @@ const skillGroups = [
 ];
 
 const certifications = [
-  "Certified React.js Developer",
-  "Certified SQL Developer",
-  "Certified JavaScript Developer",
-  "Certified HTML & CSS Developer",
+  {
+    title: "JavaScript Professional Developer — COITB",
+    image: "/javascriptcert.jpg",
+  },
+  {
+    title: "React.js Framework Developer — COITB",
+    image: "/reactcert.jpg",
+  },
+  {
+    title: "HTML/CSS Web Designer — COITB",
+    image: "/htmlcsscert.jpg",
+  },
+  {
+    title: "SQL Developer — COITB",
+    image: null,
+  },
 ];
 
 export default function Home() {
+  const [openCert, setOpenCert] = useState<{
+    title: string;
+    image: string | null;
+  } | null>(null);
+
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      {/* nav — keeping it clean and easy to move around */}
       <nav className="fixed top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--bg)]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-12">
           <a
@@ -176,7 +194,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* hero section */}
       <section className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-28 md:px-12">
         <motion.p
           initial={{ opacity: 0, y: 14 }}
@@ -226,17 +243,13 @@ export default function Home() {
             Contact Me
           </a>
         </motion.div>
-        <p className="mt-5 text-sm text-[var(--subtext)]">
-  Built and deployed multiple client websites • Currently taking on new projects
-</p>
 
         <p className="mt-5 text-sm text-[var(--subtext)]">
-          Currently taking on freelance projects, collaborations, and new
-          opportunities.
+          Built and deployed multiple client websites • Currently taking on new
+          projects
         </p>
       </section>
 
-      {/* work — the proof, because pretty words are not enough lol */}
       <section id="work" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
         <div className="mb-12">
           <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
@@ -246,9 +259,10 @@ export default function Home() {
             Client work + portfolio projects
           </h2>
           <p className="mt-4 max-w-2xl text-[var(--subtext)]">
-            Each project includes the problem, solution, and result so you can see how I think through design, development, and real-world functionality.
+            Each project includes the problem, solution, and result so you can
+            see how I think through design, development, and real-world
+            functionality.
           </p>
-   
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -258,7 +272,6 @@ export default function Home() {
               whileHover={{ y: -6 }}
               className="overflow-hidden rounded-3xl border border-[var(--border)] bg-white shadow-[0_18px_50px_rgba(30,27,24,0.08)]"
             >
-              {/* screenshot preview */}
               <div className="relative h-52 overflow-hidden">
                 <Image
                   src={project.image}
@@ -270,7 +283,6 @@ export default function Home() {
                 />
               </div>
 
-              {/* project details */}
               <div className="p-6">
                 <p className="mb-2 text-xs uppercase tracking-[0.22em] text-[var(--accent)]">
                   {project.type}
@@ -284,28 +296,26 @@ export default function Home() {
                   {project.description}
                 </p>
 
-                {project.caseStudy && (
-                  <div className="mt-5 space-y-3 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4 text-sm leading-6 text-[var(--subtext)]">
-                    <p>
-                      <span className="font-semibold text-[var(--text)]">
-                        Problem:
-                      </span>{" "}
-                      {project.caseStudy.problem}
-                    </p>
-                    <p>
-                      <span className="font-semibold text-[var(--text)]">
-                        Solution:
-                      </span>{" "}
-                      {project.caseStudy.solution}
-                    </p>
-                    <p>
-                      <span className="font-semibold text-[var(--text)]">
-                        Result:
-                      </span>{" "}
-                      {project.caseStudy.result}
-                    </p>
-                  </div>
-                )}
+                <div className="mt-5 space-y-3 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4 text-sm leading-6 text-[var(--subtext)]">
+                  <p>
+                    <span className="font-semibold text-[var(--text)]">
+                      Problem:
+                    </span>{" "}
+                    {project.caseStudy.problem}
+                  </p>
+                  <p>
+                    <span className="font-semibold text-[var(--text)]">
+                      Solution:
+                    </span>{" "}
+                    {project.caseStudy.solution}
+                  </p>
+                  <p>
+                    <span className="font-semibold text-[var(--text)]">
+                      Result:
+                    </span>{" "}
+                    {project.caseStudy.result}
+                  </p>
+                </div>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {project.tech.map((item) => (
@@ -345,7 +355,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* about — this is where the work ethic part comes in */}
       <section
         id="about"
         className="border-y border-[var(--border)] bg-[var(--section)]"
@@ -375,8 +384,8 @@ export default function Home() {
               <div className="mt-6 space-y-5 text-lg leading-8 text-[var(--subtext)]">
                 <p>
                   I’m a Full Stack Developer with a background in military
-                  logistics, so I’m big on structure, problem-solving, and
-                  actually getting things done.
+                  logistics, bringing strong problem-solving, structure, and
+                  attention to detail into every build.
                 </p>
 
                 <p>
@@ -396,7 +405,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* skills — not a random list, just what I actually use */}
       <section
         id="skills"
         className="mx-auto max-w-7xl px-6 py-24 md:px-12"
@@ -439,7 +447,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* certs — keeping this separate so it doesn’t feel cluttered */}
       <section className="mx-auto max-w-7xl px-6 pb-24 md:px-12">
         <div className="rounded-3xl border border-[var(--border)] bg-white p-8 shadow-[0_18px_50px_rgba(30,27,24,0.06)]">
           <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
@@ -450,20 +457,38 @@ export default function Home() {
             Verified technical training.
           </h2>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {certifications.map((cert) => (
-              <div
-                key={cert}
-                className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4 text-[var(--subtext)]"
-              >
-                {cert}
-              </div>
-            ))}
-          </div>
+          <p className="mt-3 max-w-2xl text-sm text-[var(--subtext)]">
+            Certifications earned through COITB. Click available certificates to
+            preview.
+          </p>
+
+ <div className="mt-8 grid gap-4 md:grid-cols-2">
+  {certifications.map((cert) => (
+    <div
+      key={cert.title}
+      className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4 text-[var(--subtext)]"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <span>{cert.title}</span>
+
+        {cert.image ? (
+         <button
+  type="button"
+  onClick={() => setOpenCert(cert)}
+  className="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-dark)]"
+>
+  View →
+</button>
+        ) : (
+          <span className="text-sm opacity-60">Verified</span>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
-      {/* contact — keeping it simple because recruiters need easy */}
       <section id="contact" className="mx-auto max-w-7xl px-6 py-24 md:px-12">
         <div className="rounded-3xl border border-[var(--border)] bg-white p-10 shadow-[0_18px_50px_rgba(30,27,24,0.06)] md:p-14">
           <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
@@ -471,7 +496,7 @@ export default function Home() {
           </p>
 
           <h2 className="mt-3 text-4xl font-semibold tracking-tight">
-            Let’s build something clean.
+            Let’s build something that actually works.
           </h2>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--subtext)]">
@@ -499,6 +524,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+<CertModal
+  isOpen={!!openCert}
+  onClose={() => setOpenCert(null)}
+  image={openCert?.image ?? null}
+  title={openCert?.title ?? "Certificate"}
+/>
     </main>
   );
 }
