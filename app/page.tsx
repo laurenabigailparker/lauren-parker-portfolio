@@ -124,6 +124,39 @@ const projects = [
       "Contributed to a collaborative codebase using GitHub workflows, including branching, pull requests, and resolving merge conflicts, while helping deliver a polished, production-style frontend experience.",
   },
 },
+
+{
+  title: "SkyCast — Weather Intelligence Dashboard",
+  type: "Frontend Application / API Integration",
+
+  description:
+    "Luxury-inspired weather dashboard featuring live API integration, dynamic state handling, loading/error states, and responsive product-focused UI.",
+
+  tech: [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "API Integration",
+    "State Management",
+    "Responsive Design",
+  ],
+
+  image: "/weatherapppic.jpg",
+
+  live: "https://skycast-weather-dashboard.vercel.app/",
+  github: "https://github.com/laurenabigailparker/skycast-weather-dashboard",
+
+  caseStudy: {
+    problem:
+      "I wanted to build a polished application that handled live data and demonstrated more advanced frontend functionality beyond static UI.",
+
+    solution:
+      "Built a responsive weather dashboard using live API integration, dynamic state management, loading states, and error handling with a luxury-inspired interface.",
+
+    result:
+      "Created a fully responsive application demonstrating API integration, asynchronous data handling, modern UI design, and real-world frontend development practices.",
+  },
+},
 ];
 
 const skillGroups = [
