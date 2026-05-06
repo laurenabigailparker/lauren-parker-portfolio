@@ -822,12 +822,14 @@ useEffect(() => {
       </p>
 
       <div className="mt-8 flex flex-wrap gap-4">
-        <a
-          href="#contact"
-          className="rounded-full bg-[var(--accent)] px-6 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
-        >
-          Start a Project
-        </a>
+     
+     <a
+  href="/ParkerLaurenResume.pdf"
+  download
+  className="rounded-full bg-[var(--accent)] px-6 py-3 font-medium text-white hover:bg-[var(--accent-dark)]"
+>
+  View Resume
+</a>
 
         <a
           href="https://github.com/laurenabigailparker"
