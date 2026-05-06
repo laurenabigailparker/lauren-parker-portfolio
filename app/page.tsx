@@ -157,6 +157,36 @@ const projects = [
       "Created a fully responsive application demonstrating API integration, asynchronous data handling, modern UI design, and real-world frontend development practices.",
   },
 },
+
+
+{
+  
+  title: "ClientFlow CRM",
+  description:
+    "Full-stack CRM dashboard built with React, Tailwind CSS, Supabase, and Recharts. Features include real-time CRUD operations, analytics dashboards, responsive UI, project tracking, and cloud database integration.",
+  tech: [
+    "React",
+    "Tailwind CSS",
+    "Supabase",
+    "Framer Motion",
+    "Recharts",
+    "Vercel",
+  ],
+  image: "/clientflowpic.jpg",
+  github: "https://github.com/laurenabigailparker/clientflow-crm",
+  live: "https://clientflow-crm-lime.vercel.app",
+  caseStudy: {
+  problem:
+    "Freelancers and small businesses often struggle to manage clients, project statuses, and revenue tracking in one centralized dashboard.",
+
+  solution:
+    "Built a full-stack CRM platform using React, Tailwind CSS, Supabase, and Recharts with responsive UI, analytics dashboards, and real-time CRUD operations.",
+
+  result:
+    "Created a modern SaaS-style dashboard with live database integration, project tracking, search/filter functionality, and production deployment through Vercel.",
+},
+},
+
 ];
 
 const skillGroups = [
@@ -406,13 +436,14 @@ useEffect(() => {
               LinkedIn
             </a>
 
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)] hover:text-[var(--accent)]"
-            >
-              {darkMode ? "Light" : "Dark"}
-            </button>
+      <button
+  type="button"
+  onClick={toggleTheme}
+  suppressHydrationWarning
+  className="rounded-full border border-[var(--border)] px-4 py-1 text-sm hover:border-[var(--accent)]"
+>
+  Theme
+</button>
           </div>
         </div>
       </nav>
@@ -530,25 +561,27 @@ useEffect(() => {
                 </p>
 
                 <div className="mt-5 space-y-3 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4 text-sm leading-6 text-[var(--subtext)]">
-                  <p>
-                    <span className="font-semibold text-[var(--text)]">
-                      Problem:
-                    </span>{" "}
-                    {project.caseStudy.problem}
-                  </p>
-                  <p>
-                    <span className="font-semibold text-[var(--text)]">
-                      Solution:
-                    </span>{" "}
-                    {project.caseStudy.solution}
-                  </p>
-                  <p>
-                    <span className="font-semibold text-[var(--text)]">
-                      Result:
-                    </span>{" "}
-                    {project.caseStudy.result}
-                  </p>
-                </div>
+  <p>
+    <span className="font-semibold text-[var(--text)]">
+      Problem:
+    </span>{" "}
+    {project.caseStudy?.problem}
+  </p>
+
+  <p>
+    <span className="font-semibold text-[var(--text)]">
+      Solution:
+    </span>{" "}
+    {project.caseStudy?.solution}
+  </p>
+
+  <p>
+    <span className="font-semibold text-[var(--text)]">
+      Result:
+    </span>{" "}
+    {project.caseStudy?.result}
+  </p>
+</div>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {project.tech.map((item) => (
