@@ -172,7 +172,7 @@ const projects = [
     "Recharts",
     "Vercel",
   ],
-  image: "/clientflowpic.jpg",
+  image: "/clientflow.jpg",
   github: "https://github.com/laurenabigailparker/clientflow-crm",
   live: "https://clientflow-crm-lime.vercel.app",
   caseStudy: {
