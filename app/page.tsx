@@ -539,7 +539,7 @@ useEffect(() => {
       </a>
 
       <a
-        href="/ParkerLaurenResume.pdf"
+        href="/ParkerLaurenMasterResume.pdf"
         download
         className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
       >
