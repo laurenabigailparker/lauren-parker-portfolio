@@ -187,6 +187,45 @@ const projects = [
 },
 },
 
+{
+  title: "InvoiceFlow — Full-Stack SaaS Invoicing Dashboard",
+
+  type: "Full Stack SaaS Platform / Case Study",
+
+  description:
+    "Modern invoicing SaaS dashboard featuring JWT authentication, MongoDB-backed invoice management, analytics dashboards, responsive mobile navigation, and polished premium UI/UX.",
+
+  tech: [
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Mongoose",
+    "JWT Authentication",
+    "Recharts",
+    "Framer Motion",
+  ],
+
+  image: "/invoiceflowpic.jpg",
+
+  live: "https://invoiceflow-eight-drab.vercel.app/",
+
+  github: "https://github.com/laurenabigailparker/invoiceflow",
+
+  caseStudy: {
+    problem:
+      "I wanted to build a production-style SaaS platform that demonstrated full-stack architecture, authentication workflows, responsive UI systems, and database-driven CRUD functionality.",
+
+    solution:
+      "Developed a full-stack invoicing dashboard using React, Express, MongoDB, and JWT authentication with searchable invoice management, analytics visualizations, responsive mobile navigation, and recruiter-friendly demo login functionality.",
+
+    result:
+      "Delivered a polished SaaS-style application demonstrating frontend architecture, backend API integration, database operations, authentication systems, responsive UX design, and modern dashboard development practices.",
+  },
+},
+
 ];
 
 const skillGroups = [
@@ -465,17 +504,17 @@ useEffect(() => {
   </div>
 
   {/* RIGHT - TEXT */}
-  <div>
+  <div className="min-h-[430px] sm:min-h-0">
     <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
       Full Stack Developer
     </p>
 
-    <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-6xl">
+    <h1 className="min-h-[210px] max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:min-h-[180px] sm:text-5xl md:min-h-[220px] md:text-6xl lg:min-h-[180px] lg:text-6xl">
   {headlineText}
   <span className="animate-pulse">|</span>
 </h1>
 
-   <h2 className="mt-6 text-2xl font-medium text-[var(--accent)]">
+   <h2 className="mt-6 min-h-[40px] text-2xl font-medium text-[var(--accent)]">
   {typedText}
   <span className="animate-pulse">|</span>
 </h2>
@@ -639,7 +678,7 @@ useEffect(() => {
 </div>
             </div>
 
-            <div>
+            <div className="min-h-[430px] sm:min-h-0">
               <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
                 About Me
               </p>
@@ -891,7 +930,7 @@ useEffect(() => {
     >
       <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
 
-      <div>
+      <div className="min-h-[430px] sm:min-h-0">
         <label className="mb-2 block text-sm font-medium">Name</label>
         <input
           type="text"
@@ -902,7 +941,7 @@ useEffect(() => {
         />
       </div>
 
-      <div>
+      <div className="min-h-[430px] sm:min-h-0">
         <label className="mb-2 block text-sm font-medium">Email</label>
         <input
           type="email"
@@ -913,7 +952,7 @@ useEffect(() => {
         />
       </div>
 
-      <div>
+      <div className="min-h-[430px] sm:min-h-0">
         <label className="mb-2 block text-sm font-medium">Message</label>
         <textarea
           name="message"
