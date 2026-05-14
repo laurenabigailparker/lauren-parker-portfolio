@@ -230,41 +230,47 @@ const projects = [
 
 const skillGroups = [
   {
-    title: "Client Websites",
+    title: "Frontend Engineering",
     skills: [
-      "HTML",
-      "CSS",
-      "JavaScript",
       "React.js",
       "Next.js",
+      "JavaScript",
+      "TypeScript",
       "Tailwind CSS",
       "Responsive Design",
+      "Framer Motion",
+      "Component Architecture",
     ],
   },
+
   {
-    title: "Application Logic",
+    title: "Backend & Data",
     skills: [
-      "API Routes",
-      "Form Handling",
-      "State Management",
-      "Data Handling",
-      "Application Logic",
-      "SQL",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Supabase",
+      "REST APIs",
+      "JWT Authentication",
+      "CRUD Operations",
     ],
   },
+
   {
-    title: "Delivery & Deployment",
+    title: "Deployment & Product",
     skills: [
       "Git",
       "GitHub",
       "Vercel",
-      "VS Code",
-      "Domain Setup",
-      "Deployment",
-      "Client Handoff",
+      "Postman",
+      "Database Design",
+      "Mobile Optimization",
+      "UI/UX Systems",
+      "SaaS Development",
     ],
   },
-];
+]
 
 const certifications = [
   {
