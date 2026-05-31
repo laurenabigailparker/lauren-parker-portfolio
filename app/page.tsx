@@ -393,19 +393,13 @@ const [letterIndex, setLetterIndex] = useState(0);
 
 const [headlineText, setHeadlineText] = useState("");
 const [headlineIndex, setHeadlineIndex] = useState(0);
-const [isDeletingHeadline, setIsDeletingHeadline] = useState(false);
 
 useEffect(() => {
   document.documentElement.classList.toggle("dark", darkMode);
   localStorage.setItem("theme", darkMode ? "dark" : "light");
 }, [darkMode]);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
-  useEffect(() => {
+useEffect(() => {
   const interval = setInterval(() => {
     setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
   }, 4500);
@@ -413,59 +407,41 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
-  const toggleTheme = () => {
-    setDarkMode((prev) => !prev);
-  };
+const toggleTheme = () => {
+  setDarkMode((prev) => !prev);
+};
 
-  useEffect(() => {
-    const currentWord = typingWords[wordIndex];
+useEffect(() => {
+  const currentWord = typingWords[wordIndex];
 
-    if (letterIndex < currentWord.length) {
-      const timeout = setTimeout(() => {
-        setTypedText((prev) => prev + currentWord[letterIndex]);
-        setLetterIndex((prev) => prev + 1);
-      }, 80);
-
-      return () => clearTimeout(timeout);
-    }
-
+  if (letterIndex < currentWord.length) {
     const timeout = setTimeout(() => {
-      setTypedText("");
-      setLetterIndex(0);
-      setWordIndex((prev) => (prev + 1) % typingWords.length);
-    }, 1400);
+      setTypedText((prev) => prev + currentWord[letterIndex]);
+      setLetterIndex((prev) => prev + 1);
+    }, 80);
 
     return () => clearTimeout(timeout);
-  }, [letterIndex, wordIndex]);
+  }
 
-  useEffect(() => {
-    const typingSpeed = isDeletingHeadline ? 25 : 35;
+  const timeout = setTimeout(() => {
+    setTypedText("");
+    setLetterIndex(0);
+    setWordIndex((prev) => (prev + 1) % typingWords.length);
+  }, 1400);
 
-    const timeout = setTimeout(
-      () => {
-        if (!isDeletingHeadline && headlineIndex < HERO_HEADLINE.length) {
-          setHeadlineText(HERO_HEADLINE.slice(0, headlineIndex + 1));
-          setHeadlineIndex((prev) => prev + 1);
-        } else if (
-          !isDeletingHeadline &&
-          headlineIndex === HERO_HEADLINE.length
-        ) {
-          setIsDeletingHeadline(true);
-        } else if (isDeletingHeadline && headlineIndex > 0) {
-          setHeadlineText(HERO_HEADLINE.slice(0, headlineIndex - 1));
-          setHeadlineIndex((prev) => prev - 1);
-        } else if (isDeletingHeadline && headlineIndex === 0) {
-          setIsDeletingHeadline(false);
-        }
-      },
-      headlineIndex === HERO_HEADLINE.length && !isDeletingHeadline
-        ? 1800
-        : typingSpeed
-    );
+  return () => clearTimeout(timeout);
+}, [letterIndex, wordIndex]);
 
-    return () => clearTimeout(timeout);
-  }, [headlineIndex, isDeletingHeadline]);
+useEffect(() => {
+  if (headlineIndex >= HERO_HEADLINE.length) return;
 
+  const timeout = setTimeout(() => {
+    setHeadlineText(HERO_HEADLINE.slice(0, headlineIndex + 1));
+    setHeadlineIndex((prev) => prev + 1);
+  }, 35);
+
+  return () => clearTimeout(timeout);
+}, [headlineIndex]);
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -537,7 +513,7 @@ useEffect(() => {
         </div>
       </nav>
 
-  <section className="mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-6 pt-56 md:px-12 md:pt-32 lg:grid-cols-2">
+  <section className="mx-auto grid min-h-[90svh] max-w-7xl items-center gap-12 px-6 pt-56 md:px-12 md:pt-32 lg:grid-cols-2">
   {/* LEFT - IMAGE */}
   <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_30px_80px_rgba(30,27,24,0.18)] sm:max-w-md lg:max-w-xl">
     <div className="relative aspect-[4/5] w-full">
@@ -560,15 +536,15 @@ useEffect(() => {
     </p>
 
 
-    <h1 className="h-[260px] max-w-4xl overflow-hidden text-4xl font-semibold leading-tight tracking-tight sm:h-[190px] sm:text-5xl md:h-[220px] md:text-6xl lg:h-[180px] lg:text-6xl">
-  <span className="block break-words">
+ <h1 className="min-h-[220px] max-w-4xl overflow-hidden text-4xl font-semibold leading-tight tracking-tight sm:min-h-[180px] sm:text-5xl md:min-h-[220px] md:text-6xl lg:min-h-[180px] lg:text-6xl">
+  <span className="block max-w-full break-words">
     {headlineText}
     <span className="animate-pulse">|</span>
   </span>
 </h1>
 
-  <h2 className="mt-6 h-[72px] w-full max-w-[320px] overflow-hidden text-2xl font-medium leading-tight text-[var(--accent)] sm:h-[40px] sm:max-w-none">
-  <span className="block w-full break-words">
+ <h2 className="mt-6 h-[72px] w-full max-w-[320px] overflow-hidden text-2xl font-medium leading-tight text-[var(--accent)] sm:h-[40px] sm:max-w-none">
+  <span className="block max-w-full break-words">
     {typedText}
     <span className="animate-pulse">|</span>
   </span>
