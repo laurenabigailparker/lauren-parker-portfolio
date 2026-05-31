@@ -564,7 +564,7 @@ useEffect(() => {
   <span className="animate-pulse">|</span>
 </h1>
 
-   <h2 className="mt-6 min-h-[72px] text-2xl font-medium text-[var(--accent)]">
+   <h2 className="mt-6 min-h-[72px] max-w-full overflow-hidden text-2xl font-medium text-[var(--accent)]">
   <span className="block break-words">
     {typedText}
     <span className="animate-pulse">|</span>
