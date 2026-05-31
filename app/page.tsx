@@ -99,29 +99,73 @@ const projects = [
     },
   },
 
-  {
-  title: "Vetess",
-  type: "Collaborative Platform / Veteran Career Network",
+{
+  title: "Warrior Dad Stories",
+  type: "Project Lead / Client Website",
 
   description:
-    "A modern web platform connecting veterans and military families with employers, featuring structured UI, real-world workflows, and team-based development.",
+    "Led the development of a modern author platform for veteran author T.J. Baird, featuring books, media coverage, articles, storytelling content, and personal branding.",
 
-  tech: ["Next.js", "React", "Tailwind", "Git", "GitHub Collaboration", "Supabase"],
+  tech: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Vercel",
+    "Responsive Design",
+    "Project Leadership",
+    "Supabase",
+  ],
 
-  image: "/vetesspic.jpg", // use the screenshot you just sent
+  image: "/wdpic.jpg",
+
+  live: "https://warrior-dad-stories-clean.vercel.app/",
+
+  github: "https://github.com/laurenabigailparker/warrior-dad-stories",
+
+  caseStudy: {
+    problem:
+      "The client needed a professional online presence that could showcase books, media appearances, personal stories, and veteran-focused content while maintaining a modern and easy-to-navigate experience.",
+
+    solution:
+      "Led the project from planning through deployment, organizing content structure, building responsive user interfaces, integrating media and book content, and creating a polished platform aligned with the author's brand.",
+
+    result:
+      "Delivered a fully responsive production website featuring book promotion, media integration, content management, and professional branding while serving as Project Lead and primary frontend developer throughout development.",
+  },
+},
+
+{
+  title: "Vetess",
+  type: "Project Lead / Full Stack Veteran Platform",
+
+  description:
+    "Veteran-focused employment and resource platform designed to connect veterans and military families with career opportunities, support services, and community resources through a modern, scalable web application.",
+
+  tech: [
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "Supabase",
+    "JavaScript",
+    "Git",
+    "GitHub",
+    "Vercel",
+  ],
+
+  image: "/vetesspic.jpg",
 
   live: "https://vetess.vercel.app/",
   github: "https://github.com/laurenabigailparker/vetess",
 
   caseStudy: {
     problem:
-      "Veterans transitioning to civilian careers often lack a centralized, easy-to-navigate platform that connects them with employers who understand their experience.",
+      "Veterans transitioning to civilian careers often lack a centralized platform that provides access to employment opportunities, support resources, and organizations that understand military experience.",
 
     solution:
-      "Worked as part of a development team to build a structured, responsive platform with clear navigation, modern UI, and user-focused layout for job discovery and engagement.",
+      "Served as Project Lead and primary Full Stack Developer. Built and managed the backend infrastructure using Supabase, including database configuration, authentication, administrative functionality, data management, and deployment workflows. Developed major frontend features including the Job Board, Veteran Resources, About, Donate, Contact, and Admin Dashboard sections while coordinating project direction and team collaboration.",
 
     result:
-      "Contributed to a collaborative codebase using GitHub workflows, including branching, pull requests, and resolving merge conflicts, while helping deliver a polished, production-style frontend experience.",
+      "Delivered a production-ready platform featuring secure authentication, database-driven functionality, administrative tools, responsive design, career resources, and scalable architecture. Led GitHub collaboration, pull requests, deployment management, and technical implementation across the project lifecycle.",
   },
 },
 
@@ -510,7 +554,7 @@ useEffect(() => {
   </div>
 
   {/* RIGHT - TEXT */}
-  <div className="min-h-[430px] sm:min-h-0">
+  <div className="space-y-2">
     <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[var(--accent)]">
       Full Stack Developer
     </p>
@@ -520,9 +564,11 @@ useEffect(() => {
   <span className="animate-pulse">|</span>
 </h1>
 
-   <h2 className="mt-6 min-h-[40px] text-2xl font-medium text-[var(--accent)]">
-  {typedText}
-  <span className="animate-pulse">|</span>
+   <h2 className="mt-6 min-h-[72px] text-2xl font-medium text-[var(--accent)]">
+  <span className="block break-words">
+    {typedText}
+    <span className="animate-pulse">|</span>
+  </span>
 </h2>
 
     <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--subtext)]">
@@ -684,7 +730,7 @@ useEffect(() => {
 </div>
             </div>
 
-            <div className="min-h-[430px] sm:min-h-0">
+            <div className="space-y-2">
               <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">
                 About Me
               </p>
@@ -931,12 +977,12 @@ useEffect(() => {
 
     {/* form */}
     <form
-      onSubmit={handleContactSubmit}
-      className="w-full space-y-4 rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-6"
-    >
+  onSubmit={handleContactSubmit}
+  className="w-full rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-6 space-y-5"
+>
       <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
 
-      <div className="min-h-[430px] sm:min-h-0">
+      <div className="space-y-2">
         <label className="mb-2 block text-sm font-medium">Name</label>
         <input
           type="text"
@@ -946,8 +992,7 @@ useEffect(() => {
           className="w-full rounded-2xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 outline-none focus:border-[var(--accent)]"
         />
       </div>
-
-      <div className="min-h-[430px] sm:min-h-0">
+<div className="space-y-2">
         <label className="mb-2 block text-sm font-medium">Email</label>
         <input
           type="email"
@@ -958,7 +1003,7 @@ useEffect(() => {
         />
       </div>
 
-      <div className="min-h-[430px] sm:min-h-0">
+      <div className="space-y-2">
         <label className="mb-2 block text-sm font-medium">Message</label>
         <textarea
           name="message"
