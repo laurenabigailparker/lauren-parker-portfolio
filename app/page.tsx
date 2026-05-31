@@ -559,13 +559,16 @@ useEffect(() => {
       Full Stack Developer
     </p>
 
-    <h1 className="min-h-[210px] max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:min-h-[180px] sm:text-5xl md:min-h-[220px] md:text-6xl lg:min-h-[180px] lg:text-6xl">
-  {headlineText}
-  <span className="animate-pulse">|</span>
+
+    <h1 className="h-[260px] max-w-4xl overflow-hidden text-4xl font-semibold leading-tight tracking-tight sm:h-[190px] sm:text-5xl md:h-[220px] md:text-6xl lg:h-[180px] lg:text-6xl">
+  <span className="block break-words">
+    {headlineText}
+    <span className="animate-pulse">|</span>
+  </span>
 </h1>
 
-   <h2 className="mt-6 min-h-[72px] max-w-full overflow-hidden text-2xl font-medium text-[var(--accent)]">
-  <span className="block break-words">
+  <h2 className="mt-6 h-[72px] w-full max-w-[320px] overflow-hidden text-2xl font-medium leading-tight text-[var(--accent)] sm:h-[40px] sm:max-w-none">
+  <span className="block w-full break-words">
     {typedText}
     <span className="animate-pulse">|</span>
   </span>
