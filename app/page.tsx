@@ -104,6 +104,39 @@ const projects = [
     live: "#",
     github: "#",
   },
+    {
+    title: "Mag's Towing",
+    type: "Client Business Website",
+    description:
+      "Responsive towing and roadside assistance website built with clear service sections, mobile-first layouts, and customer-focused contact pathways.",
+    tech: ["React", "JavaScript", "Tailwind CSS", "Responsive Design", "Vercel"],
+    metrics: ["Client Website", "Mobile-First UI", "Lead Generation", "Service UX"],
+    image: "/towingpic.jpg",
+    live: "https://www.magstowing.com/",
+    github: "#",
+  },
+  {
+    title: "Native Wildlife Solutions",
+    type: "Client Business Website",
+    description:
+      "Professional wildlife removal website with structured service content, responsive layouts, clean navigation, and conversion-focused user experience.",
+    tech: ["React", "JavaScript", "Tailwind CSS", "Responsive Design", "Vercel"],
+    metrics: ["Client Website", "Responsive UI", "Service Pages", "Customer UX"],
+    image: "/wildlifepic.jpg",
+    live: "https://www.nativewildlifesolutions.com/",
+    github: "#",
+  },
+  {
+    title: "Sully's Rodent Removal",
+    type: "Client Business Website",
+    description:
+      "Rodent removal and pest control website designed for local-service visibility, customer trust, responsive performance, and service inquiry conversion.",
+    tech: ["React", "JavaScript", "Tailwind CSS", "Responsive Design", "Vercel"],
+    metrics: ["Client Website", "Local SEO", "Responsive UI", "Contact Flow"],
+    image: "/sullyspic.jpg",
+    live: "https://sullysrodentremoval.com/",
+    github: "#",
+  },
   {
     title: "SkyCast",
     type: "Frontend API Application",
@@ -114,17 +147,6 @@ const projects = [
     image: "/weatherapppic.jpg",
     live: "https://skycast-weather-dashboard.vercel.app/",
     github: "https://github.com/laurenabigailparker/skycast-weather-dashboard",
-  },
-  {
-    title: "Studio Site",
-    type: "Creative Business Website",
-    description:
-      "Visual client-style website focused on branding, imagery, responsive layouts, and polished presentation.",
-    tech: ["React", "Tailwind CSS", "Responsive Design", "Vercel"],
-    metrics: ["Creative Site", "Visual Design", "Responsive UI", "Brand Layout"],
-    image: "/studios.jpg",
-    live: "#",
-    github: "#",
   },
 ];
 
